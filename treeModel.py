@@ -2,7 +2,7 @@ import numpy as np
 import dateutil.parser
 import math
 import util
-from sklearn import linear_model
+from sklearn import tree
 
 convert = lambda x: int(dateutil.parser.parse(x).hour)
 
@@ -17,3 +17,7 @@ def create_group():
         samples = np.vstack((samples, s))
 
     return samples
+
+examples = create_group()
+clf = tree.DecisionTreeClassifier()
+clf = clf.fit(examples[:,:-1], examples[:,-1])
