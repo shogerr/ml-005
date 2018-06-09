@@ -3,6 +3,7 @@ import dateutil.parser
 import math
 import util
 from sklearn import tree
+import graphviz
 
 convert = lambda x: int(dateutil.parser.parse(x).hour)
 
@@ -21,3 +22,7 @@ def create_group():
 examples = create_group()
 clf = tree.DecisionTreeClassifier()
 clf = clf.fit(examples[:,:-1], examples[:,-1])
+
+dotData = tree.export_graphviz(clf, out_file=None)
+graph = graphviz.Source(dotData)
+graph.render('tree')
