@@ -3,3 +3,5 @@
 __pycache__/
 tree.pdf
 tree
+tree_predictions.csv
+svc_predictions.csv
