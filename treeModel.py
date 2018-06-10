@@ -20,7 +20,7 @@ def create_group():
     return samples
 
 examples = create_group()
-clf = tree.DecisionTreeClassifier()
+clf = tree.DecisionTreeClassifier(class_weight='balanced')
 clf = clf.fit(examples[:,:-1], examples[:,-1])
 
 dotData = tree.export_graphviz(clf, out_file=None)

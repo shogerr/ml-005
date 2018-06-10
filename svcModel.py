@@ -21,5 +21,5 @@ def create_group():
     return samples
 
 examples = create_group()
-clf = svm.SVC()
+clf = svm.SVC(class_weight='balanced')
 clf.fit(examples[:,:-1], examples[:,-1])
