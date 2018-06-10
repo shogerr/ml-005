@@ -20,6 +20,43 @@ def create_group():
 
     return samples
 
+
+def create_test_group():
+    f = 'general_test_instances.csv'
+    sample = np.loadtxt('./data/'+f, delimiter=',')
+    s = util.reshape_test(sample)
+
+    return s
+
+
+def testRateRun(examples):
+    dataSplit = 1500
+    clf = svm.SVC(class_weight='balanced', probability=False)
+    clf = clf.fit(examples[:dataSplit,:-1], examples[:dataSplit,-1])
+    print('test data predictions:')
+    successRate(clf.predict(examples[dataSplit:,:-1]), examples[dataSplit:,-1])
+
+
+def successRate(expected, actual):
+    success = 0
+    for i in range(len(actual)):
+        if expected[i] == actual[i]:
+            success += 1
+    print('correct: ' + str(success), 'total: ' + str(len(expected)), 'rate: ' + str(success/len(expected)))
+
+
+def createPredictionsCSV(clf, testData, fileName):
+    predictions = clf.predict(testData)
+    predProb = clf.predict_proba(testData)
+    with open(fileName, 'w+') as f:
+        for i in range(len(predictions)):
+            prob = max(predProb[i])
+            f.write(str(predictions[i]) + ',' + str(predProb[i]) + '\n')
+
+
 examples = create_group()
-clf = svm.SVC(class_weight='balanced')
+clf = svm.SVC(class_weight='balanced', probability=True)
 clf.fit(examples[:,:-1], examples[:,-1])
+testExamples = create_test_group()
+createPredictionsCSV(clf, testExamples, 'svc_predictions.csv')
+testRateRun(examples)
