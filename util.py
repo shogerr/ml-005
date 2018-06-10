@@ -31,7 +31,6 @@ def reshape_test(s):
     seed = np.array((0,9,18,27,36,45,54))
     f = np.empty(shape=(0,0), dtype=np.int)
     for i in range(9):
-        print(i)
         f = np.append(f, seed + i)
 
     s[:,np.arange(63)] = s[:,f]
