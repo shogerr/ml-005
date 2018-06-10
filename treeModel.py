@@ -48,10 +48,10 @@ def createTreeImage(clf):
     graph = graphviz.Source(dotData)
     graph.render('tree')
 
-def createPredictionsCSV(clf, testData):
+def createPredictionsCSV(clf, testData, fileName):
     predictions = clf.predict(testData)
     predProb = clf.predict_proba(testData)
-    with open('tree_predictions.csv', 'w+') as f:
+    with open(fileName, 'w+') as f:
         for i in range(len(predictions)):
             prob = max(predProb[i])
             f.write(str(predictions[i]) + ',' + str(predProb[i]) + '\n')
@@ -63,6 +63,6 @@ clf = tree.DecisionTreeClassifier(class_weight='balanced')
 clf = clf.fit(examples[:,:-1], examples[:,-1])
 successRate(clf.predict(examples[:,:-1]), examples[:,-1])
 testExamples = create_test_group()
-createPredictionsCSV(clf, testExamples)
+createPredictionsCSV(clf, testExamples, 'tree_predictions.csv')
 
 testRateRun(examples)
