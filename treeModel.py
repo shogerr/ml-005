@@ -59,7 +59,7 @@ def createPredictionsCSV(clf, testData, fileName):
 
 
 examples = create_group()
-clf = tree.DecisionTreeClassifier(class_weight='balanced')
+clf = tree.DecisionTreeClassifier(class_weight='balanced', criterion='entropy')
 clf = clf.fit(examples[:,:-1], examples[:,-1])
 successRate(clf.predict(examples[:,:-1]), examples[:,-1])
 testExamples = create_test_group()
