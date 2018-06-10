@@ -22,6 +22,7 @@ examples = create_group()
 logreg = linear_model.LogisticRegression(class_weight='balanced')
 logreg.fit(examples[:,:63], examples[:,63])
 
+print(examples.shape)
 print(logreg.coef_.shape)
 print(logreg.intercept_)
 print(logreg.predict_proba(examples[:,:63]))
