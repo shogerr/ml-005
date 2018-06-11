@@ -31,7 +31,7 @@ def create_test_group():
 
 def testRateRun(examples):
     dataSplit = 1500
-    clf = svm.SVC(class_weight='balanced', probability=False)
+    clf = svm.SVC(class_weight='balanced', probability=False, kernel='poly', degree=2)
     clf = clf.fit(examples[:dataSplit,:-1], examples[:dataSplit,-1])
     print('test data predictions:')
     successRate(clf.predict(examples[dataSplit:,:-1]), examples[dataSplit:,-1])
@@ -50,12 +50,16 @@ def createPredictionsCSV(clf, testData, fileName):
     predProb = clf.predict_proba(testData)
     with open(fileName, 'w+') as f:
         for i in range(len(predictions)):
+            if predictions[i] == 1:
+                print('positive')
             prob = max(predProb[i])
             f.write(str(predictions[i]) + ',' + str(predProb[i]) + '\n')
 
 
 examples = create_group()
-clf = svm.SVC(class_weight='balanced', probability=True)
+# 2 positives with sigmoid kernel
+clf = svm.SVC(class_weight='balanced', probability=True,
+                kernel='poly', degree=2)
 clf.fit(examples[:,:-1], examples[:,-1])
 testExamples = create_test_group()
 createPredictionsCSV(clf, testExamples, 'svc_predictions.csv')
