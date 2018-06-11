@@ -29,7 +29,7 @@ def create_test_group():
 
 def testRateRun(examples):
     dataSplit = 1500
-    clf = tree.DecisionTreeClassifier(class_weight='balanced')
+    clf = tree.DecisionTreeClassifier(class_weight='balanced', criterion='entropy')
     clf = clf.fit(examples[:dataSplit,:-1], examples[:dataSplit,-1])
     print('test data predictions:')
     successRate(clf.predict(examples[dataSplit:,:-1]), examples[dataSplit:,-1])
