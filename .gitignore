@@ -5,3 +5,5 @@ tree.pdf
 tree
 tree_predictions.csv
 svc_predictions.csv
+naive_bayes_predictions.csv
+neural_net_predictions.csv
