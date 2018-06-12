@@ -16,6 +16,8 @@ To get our features we put together the 30 minute data intervals and then flatte
 \subsection{Preprocessing}
 Did you pre-process your data in any way? This can be for the purpose of reducing dimension, or reducing noise, or balancing the class distribution. Be clear about what you exactly did. The criterion is to allow others to replicate your works.
 
+We did not do any preprocessing on our data besides creating the instances.
+
 \section{Learning algorithms}
 \subsection{Algorithms explored}
 Provide a list of learning algorithms that you explored for this project. For each algorithm, briefly justify your rationale for choosing this algorithm.
@@ -26,6 +28,7 @@ What are the final models that produced your submitted test predictions?
 \section{Parameter Tuning and Model Selection }
 \subsection{Parameter Tuning}
 What parameters did you tune for your models? How do you perform the parameter tuning?
+
 \subsubsection{Decision Tree}
 Originally we were using the Gini criterion for decision tree branching which got us good results on the training set but we were getting no positive predictions on the test set.
 Changing the criterion to use entropy gave us a slightly higher prediction rate on the training set and gave us some positive predictions on the final test set.
