@@ -31,18 +31,10 @@ def create_test_group():
 
 def testRateRun(examples):
     dataSplit = 1500
-    clf = svm.SVC(class_weight='balanced', probability=False, kernel='poly', degree=2)
+    clf = svm.SVC(class_weight='balanced', probability=False, kernel='sigmoid', degree=2)
     clf = clf.fit(examples[:dataSplit,:-1], examples[:dataSplit,-1])
     print('test data predictions:')
-    successRate(clf.predict(examples[dataSplit:,:-1]), examples[dataSplit:,-1])
-
-
-def successRate(expected, actual):
-    success = 0
-    for i in range(len(actual)):
-        if expected[i] == actual[i]:
-            success += 1
-    print('correct: ' + str(success), 'total: ' + str(len(expected)), 'rate: ' + str(success/len(expected)))
+    util.successRate(clf.predict(examples[dataSplit:,:-1]), examples[dataSplit:,-1])
 
 
 def createPredictionsCSV(clf, testData, fileName):
@@ -59,8 +51,9 @@ def createPredictionsCSV(clf, testData, fileName):
 examples = create_group()
 # 2 positives with sigmoid kernel
 clf = svm.SVC(class_weight='balanced', probability=True,
-                kernel='poly', degree=2)
+                kernel='sigmoid', degree=2)
 clf.fit(examples[:,:-1], examples[:,-1])
+util.successRate(clf.predict(examples[:,:-1]), examples[:,-1])
 testExamples = create_test_group()
 createPredictionsCSV(clf, testExamples, 'svc_predictions.csv')
 testRateRun(examples)

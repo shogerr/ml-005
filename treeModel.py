@@ -32,15 +32,7 @@ def testRateRun(examples):
     clf = tree.DecisionTreeClassifier(class_weight='balanced', criterion='entropy')
     clf = clf.fit(examples[:dataSplit,:-1], examples[:dataSplit,-1])
     print('test data predictions:')
-    successRate(clf.predict(examples[dataSplit:,:-1]), examples[dataSplit:,-1])
-
-
-def successRate(expected, actual):
-    success = 0
-    for i in range(len(actual)):
-        if expected[i] == actual[i]:
-            success += 1
-    print('correct: ' + str(success), 'total: ' + str(len(expected)), 'rate: ' + str(success/len(expected)))
+    util.successRate(clf.predict(examples[dataSplit:,:-1]), examples[dataSplit:,-1])
 
 
 def createTreeImage(clf):
@@ -61,7 +53,7 @@ def createPredictionsCSV(clf, testData, fileName):
 examples = create_group()
 clf = tree.DecisionTreeClassifier(class_weight='balanced', criterion='entropy')
 clf = clf.fit(examples[:,:-1], examples[:,-1])
-successRate(clf.predict(examples[:,:-1]), examples[:,-1])
+util.successRate(clf.predict(examples[:,:-1]), examples[:,-1])
 testExamples = create_test_group()
 createPredictionsCSV(clf, testExamples, 'tree_predictions.csv')
 
