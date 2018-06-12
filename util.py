@@ -35,5 +35,40 @@ def reshape_test(s):
         f = np.append(f, seed + i)
 
     s[:,np.arange(63)] = s[:,f]
-    return s 
+    return s
 
+
+def successRate(expected, actual):
+    success = 0
+    tp = 0
+    tn = 0
+    fp = 0
+    fn = 0
+    actual_tp = 0
+    actual_tn = 0
+    for i in range(len(actual)):
+        if expected[i] == actual[i]:
+            success += 1
+        if expected[i] == 1 and actual[i] == 1:
+            tp += 1
+        if actual[i] == 1:
+            actual_tp += 1
+        if actual[i] == 0:
+            actual_tn += 1
+        if expected[i] == 1 and actual[i] == 0:
+            fp += 1
+        if expected[i] == 0 and actual[i] == 0:
+            tn += 1
+        if expected[i] == 0 and actual[i] == 1:
+            fn += 1
+    if tp + fp == 0:
+        precision = 0
+    else:
+        precision = tp/(tp+fp)
+    if fn + tn == 0:
+        recall = 0
+    else:
+        recall = fn/(fn+tn)
+    print('correct: ' + str(success), 'total: ' + str(len(expected)), 'rate: ' + "{0:.0%}".format(success/len(expected)))
+    print('Precision: ' + "{0:.0%}".format(precision))
+    print('Recall: ' + "{0:.0%}".format(recall))
