@@ -33,6 +33,10 @@ What parameters did you tune for your models? How do you perform the parameter t
 Originally we were using the Gini criterion for decision tree branching which got us good results on the training set but we were getting no positive predictions on the test set.
 Changing the criterion to use entropy gave us a slightly higher prediction rate on the training set and gave us some positive predictions on the final test set.
 
+\subsubsection{SVC}
+Tried out different kernels, mostly tested with sigmoid and different polynomials.
+Any polynomial with degree larger than 3 took too long to finish and we got mostly false positives with polynomial.
+
 \subsection{Model selection}
 How did you decide which models to use to produce the final predictions?  Do you use cross-validation or hold-out for model selection? When you split the data for validation, is it fully random or special consideration went into forming the folds? What criterion is used to select the models?
 
