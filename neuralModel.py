@@ -28,8 +28,8 @@ def create_test_group():
 
 
 def testRateRun(examples):
-    dataSplit = 1500
-    clf = neural_network.MLPClassifier()
+    dataSplit = 1000
+    clf = neural_network.MLPClassifier(activation='relu', solver='lbfgs')
     clf = clf.fit(examples[:dataSplit,:-1], examples[:dataSplit,-1])
     print('test data predictions:')
     util.successRate(clf.predict(examples[dataSplit:,:-1]), examples[dataSplit:,-1])
@@ -51,7 +51,7 @@ def createPredictionsCSV(clf, testData, fileName):
 
 
 examples = create_group()
-clf = neural_network.MLPClassifier()
+clf = neural_network.MLPClassifier(activation='relu', solver='lbfgs')
 clf = clf.fit(examples[:,:-1], examples[:,-1])
 util.successRate(clf.predict(examples[:,:-1]), examples[:,-1])
 testExamples = create_test_group()
