@@ -37,6 +37,12 @@ Changing the criterion to use entropy gave us a slightly higher prediction rate 
 Tried out different kernels, mostly tested with sigmoid and different polynomials.
 Any polynomial with degree larger than 3 took too long to finish and we got mostly false positives with polynomial.
 
+\subsubsection{Neural Network}
+We tried adjusting many of the parameters such as the number of hidden layers and max iterations.
+We found the default setting was best for many of the parameters.
+We settled on using a relu activation function with an Ibgfs solver for weight distribution.
+The hard part with Neural Network is we often get no positive predictions and other times it is normal.
+
 \subsection{Model selection}
 How did you decide which models to use to produce the final predictions?  Do you use cross-validation or hold-out for model selection? When you split the data for validation, is it fully random or special consideration went into forming the folds? What criterion is used to select the models?
 
