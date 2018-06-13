@@ -47,7 +47,8 @@ def createPredictionsCSV(clf, testData, fileName):
     with open(fileName, 'w+') as f:
         for i in range(len(predictions)):
             prob = max(predProb[i])
-            f.write(str(predictions[i]) + ',' + str(predProb[i]) + '\n')
+            #f.write(str(predictions[i]) + ',' + str(predProb[i]) + '\n')
+            f.write(str(predictions[i]) + '\n')
 
 
 examples = create_group()
