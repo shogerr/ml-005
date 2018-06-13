@@ -58,6 +58,11 @@
 	\subsection{Model selection}
 		How did you decide which models to use to produce the final predictions?  Do you use cross-validation or hold-out for model selection? When you split the data for validation, is it fully 		random or special consideration went into forming the folds? What criterion is used to select the models?
 
+		We used hold out validation to test our algorithms
+		We were really interested in how many true positives our algorithms were getting.
+		Since there are so little positive values in the data set we made the test data set larger than the training set so the algorithms had a chance to find more true positives.
+		With holdout validation we looked for algorithms that had high precision and recall rates.
+
 \section{Results}
 	Do you have any internal evaluation results you want to report?
 
