@@ -10,18 +10,24 @@
 \maketitle
 \section{Feature formulation and preprocessing}
 	\subsection{Features}
-	What are the features you feed to your learning algorithm? Did you simply flatten the 7 rows into a vector for features? Did you transform or aggregate the given 						data to engineer your own features?
+	What are the features you feed to your learning algorithm?
+	Did you simply flatten the 7 rows into a vector for features?
+	Did you transform or aggregate the given data to engineer your own features?
 
-		To get our features we put together the 30 minute data intervals and then flatten each instance into a vector.
+	To get our features we put together the 30 minute data intervals and then flatten each instance into a vector.
 
 	\subsection{Preprocessing}
-		Did you pre-process your data in any way? This can be for the purpose of reducing dimension, or reducing noise, or balancing the class distribution. Be clear about what you 				exactly did. The criterion is to allow others to replicate your works.
+		Did you pre-process your data in any way?
+		This can be for the purpose of reducing dimension, or reducing noise, or balancing the class distribution.
+		Be clear about what you exactly did.
+		The criterion is to allow others to replicate your works.
 
 		We did not do any preprocessing on our data besides creating the instances.
 
 \section{Learning algorithms}
 	\subsection{Algorithms explored}
-		Provide a list of learning algorithms that you explored for this project. For each algorithm, briefly justify your rationale for choosing this algorithm.
+		Provide a list of learning algorithms that you explored for this project.
+		For each algorithm, briefly justify your rationale for choosing this algorithm.
 
 		\subsubsection{Neural Network}
 			Neural networks are all the rage right now and its a powerful algorithm so we wanted to try it out.
@@ -41,7 +47,8 @@
 
 \section{Parameter Tuning and Model Selection }
 	\subsection{Parameter Tuning}
-		What parameters did you tune for your models? How do you perform the parameter tuning?
+		What parameters did you tune for your models?
+		How do you perform the parameter tuning?
 
 		\subsubsection{Decision Tree}
 			Originally we were using the Gini criterion for decision tree branching which got us good results on the training set but we were getting no positive predictions on the test set.
@@ -58,7 +65,10 @@
 			The hard part with Neural Network is we often get no positive predictions and other times it is normal.
 
 	\subsection{Model selection}
-		How did you decide which models to use to produce the final predictions?  Do you use cross-validation or hold-out for model selection? When you split the data for validation, is it fully 		random or special consideration went into forming the folds? What criterion is used to select the models?
+		How did you decide which models to use to produce the final predictions? 
+		Do you use cross-validation or hold-out for model selection?
+		When you split the data for validation, is it fully random or special consideration went into forming the folds?
+		What criterion is used to select the models?
 
 		We used hold out validation to test our algorithms
 		We were really interested in how many true positives our algorithms were getting.
