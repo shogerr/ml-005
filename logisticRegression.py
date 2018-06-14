@@ -7,7 +7,9 @@ from sklearn import linear_model
 convert = lambda x: int(dateutil.parser.parse(x).hour)
 
 def create_group():
-    subject_files = ['Subject_1.csv', 'Subject_4.csv', 'Subject_6.csv', 'Subject_9.csv' ]
+    #subject_files = ['Subject_1.csv', 'Subject_4.csv', 'Subject_6.csv', 'Subject_9.csv' ]
+    #subject_files = ['Subject_2_part1.csv']
+    subject_files = ['Subject_7_part1.csv']
 
     samples = np.empty(shape=(0,64))
 
@@ -19,8 +21,10 @@ def create_group():
     return samples
 
 def create_test_group():
-   f = 'general_test_instances.csv'
-   sample = np.loadtxt('./data/'+f, delimiter=',')
+   #f = 'general_test_instances.csv'
+   #f = 'subject2_instances.csv'
+   f = 'subject7_instances.csv'
+   sample = np.loadtxt('./test/'+f, delimiter=',')
    s = util.reshape_test(sample)
 
    return s
@@ -37,14 +41,14 @@ def createPredictionsCSV(clf, testData, fileName):
    predProb = clf.predict_proba(testData)
    with open(fileName, 'w+') as f:
        for i in range(len(predictions)):
-           prob = max(predProb[i])
-           #f.write(str(predictions[i]) + ',' + str(predProb[i]) + '\n')
-           f.write(str(predictions[i]) + '\n')
+            prob = '%.5f'%(predProb[i][1])
+            f.write(str(prob) + ',' + str(predictions[i]) + '\n')
+
 
 examples = create_group()
 clf = linear_model.LogisticRegression(class_weight='balanced', C=10.0)
-clf.fit(examples[:,:1], examples[:,1])
-util.successRate(clf.predict(examples[:,:-1]), examples[:,-1])
+clf = clf.fit(examples[:,:-1], examples[:,-1])
+#util.successRate(clf.predict(examples[:,:-1]), examples[:,-1])
 testExamples = create_test_group()
-createPredictionsCSV(clf, testExamples, 'logistic_regression_predictions.csv')
+#createPredictionsCSV(clf, testExamples, 'logistic_regression_predictions.csv')
 testRateRun(examples)
