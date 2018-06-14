@@ -50,9 +50,11 @@ def createPredictionsCSV(clf, testData, fileName):
     predProb = clf.predict_proba(testData)
     with open(fileName, 'w+') as f:
         for i in range(len(predictions)):
-            prob = max(predProb[i])
-            #f.write(str(predictions[i]) + ',' + str(predProb[i]) + '\n')
-            f.write(str(predictions[i]) + '\n')
+            prob = '%.5f'%(predProb[i][1])
+            if predictions[i] == 1:
+                print('positive')
+            f.write(str(prob) + ',' + str(predictions[i]) + '\n')
+            #f.write(str(predictions[i]) + '\n')
 
 
 examples = create_group()
