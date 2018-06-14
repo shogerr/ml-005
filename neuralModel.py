@@ -9,6 +9,8 @@ convert = lambda x: int(dateutil.parser.parse(x).hour)
 
 def create_group():
     subject_files = ['Subject_1.csv', 'Subject_4.csv', 'Subject_6.csv', 'Subject_9.csv' ]
+    #subject_files = ['Subject_2_part1.csv']
+    #subject_files = ['Subject_7_part1.csv']
 
     samples = np.empty(shape=(0,64))
 
@@ -21,7 +23,9 @@ def create_group():
 
 def create_test_group():
     f = 'general_test_instances.csv'
-    sample = np.loadtxt('./data/'+f, delimiter=',')
+    #f = 'subject2_instances.csv'
+    #f = 'subject7_instances.csv'
+    sample = np.loadtxt('./test/'+f, delimiter=',')
     s = util.reshape_test(sample)
 
     return s
@@ -54,8 +58,8 @@ def createPredictionsCSV(clf, testData, fileName):
 examples = create_group()
 clf = neural_network.MLPClassifier(activation='relu', solver='lbfgs')
 clf = clf.fit(examples[:,:-1], examples[:,-1])
-util.successRate(clf.predict(examples[:,:-1]), examples[:,-1])
+#util.successRate(clf.predict(examples[:,:-1]), examples[:,-1])
 testExamples = create_test_group()
 createPredictionsCSV(clf, testExamples, 'neural_net_predictions.csv')
 
-testRateRun(examples)
+#testRateRun(examples)
