@@ -42,7 +42,7 @@ def createPredictionsCSV(clf, testData, fileName):
            f.write(str(predictions[i]) + '\n')
 
 examples = create_group()
-clf = linear_model.LogisticRegression(class_weight='balanced')
+clf = linear_model.LogisticRegression(class_weight='balanced', C=10.0)
 clf.fit(examples[:,:1], examples[:,1])
 util.successRate(clf.predict(examples[:,:-1]), examples[:,-1])
 testExamples = create_test_group()
