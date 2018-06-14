@@ -69,9 +69,12 @@
 
 		\subsubsection{Naive Bayes}
 			For Naive Bayes we used a GaussianNB algorithm which didn't have much parameters to change besides priors which didn't apply in our situation.
+			The success rate was so low early on we didn't put much effort into this one.
 
 		\subsubsection{Logistic Regression}
-			
+			We tried different solver methods like sag and saga but they gave us lower precision rates so we stuck with the default liblinear solver.
+			We also tried lower and increasing the tolerance for the stopping criteria and saw no changes to precision and recall.
+			Reducing the strength of the regularization got us a small boost in precision.
 
 	\subsection{Model selection}
 		How did you decide which models to use to produce the final predictions? 
@@ -82,7 +85,7 @@
 		We used hold out validation to test our algorithms.
 		We were really interested in how many true positives our algorithms were getting.
 		Since there are so little positive values in the data set we made the test data set larger than the training set so the algorithms had a chance to find more true positives.
-		With holdout validation we looked for algorithms that had high precision and recall rates.
+		With holdout validation we looked for algorithms that had high precision and recall rates to use as our top 3 algortihms.
 
 \section{Results}
 	Do you have any internal evaluation results you want to report?
@@ -99,7 +102,7 @@
 		\hline
 		SVC & 3\% & 0\% & 3\% \\
 		\hline
-		Logistic Regression & & & \\
+		Logistic Regression & 21\% & 1\% & 93\% \\
 		\hline
 	\end{tabular}
 
