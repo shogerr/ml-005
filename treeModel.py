@@ -53,6 +53,6 @@ clf = tree.DecisionTreeClassifier(class_weight='balanced', criterion='entropy')
 clf = clf.fit(examples[:,:-1], examples[:,-1])
 #util.successRate(clf.predict(examples[:,:-1]), examples[:,-1])
 testExamples = create_test_group()
-createPredictionsCSV(clf, testExamples, 'tree_predictions.csv')
+#createPredictionsCSV(clf, testExamples, 'tree_predictions.csv')
 
-#testRateRun(examples)
+testRateRun(examples)

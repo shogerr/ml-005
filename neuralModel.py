@@ -62,6 +62,6 @@ clf = neural_network.MLPClassifier(activation='relu', solver='lbfgs')
 clf = clf.fit(examples[:,:-1], examples[:,-1])
 #util.successRate(clf.predict(examples[:,:-1]), examples[:,-1])
 testExamples = create_test_group()
-createPredictionsCSV(clf, testExamples, 'neural_net_predictions.csv')
+#createPredictionsCSV(clf, testExamples, 'neural_net_predictions.csv')
 
-#testRateRun(examples)
+testRateRun(examples)
